@@ -1,0 +1,30 @@
+.urinal-wrapper
+{
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.urinal
+{
+    width: 100px;
+    height: 100px;
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid transparent;
+}
+
+.urinal .png
+{
+    background-image: url(../src/urinal.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
