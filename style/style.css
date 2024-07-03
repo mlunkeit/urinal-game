@@ -1,3 +1,26 @@
+@keyframes blink
+{
+    0% {
+        border-color: transparent;
+    }
+
+    25% {
+        border-color: red;
+    }
+
+    50% {
+        border-color: transparent;
+    }
+
+    75% {
+        border-color: red;
+    }
+
+    100% {
+        border-color: transparent;
+    }
+}
+
 .urinal-wrapper
 {
     width: fit-content;
@@ -11,6 +34,7 @@
 
 .urinal
 {
+    border-radius: 20px;
     width: 100px;
     height: 100px;
     margin: 20px;
@@ -47,6 +71,15 @@
 .urinal.selected
 {
     border: 3px solid black;
+}
+
+.urinal.failure
+{
+    border: 3px solid transparent;
+    border-radius: 20px;
+    animation-name: blink;
+    animation-duration: .5s;
+    animation-timing-function: ease-in-out;
 }
 
 #turn-phone

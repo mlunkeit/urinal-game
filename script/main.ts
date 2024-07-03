@@ -51,8 +51,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const urinal = game.getUrinals()[+ord]
             const state = urinal.getState()
 
-            if(state != State.FREE)
-                alert('Urinal is occupied or not available!')
+            if(state != State.FREE) {
+                target.classList.add('failure')
+                setTimeout(() => target.classList.remove('failure'), 500)
+            }
         })
     })
 
