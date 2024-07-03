@@ -3,14 +3,21 @@
     <head>
         <meta charset="UTF-8">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-        <script src="script/main.js"></script>
+        <script type="module" src="script/utils/random.js"></script>
+        <script type="module" src="script/engine/urinal.js"></script>
+        <script type="module" src="script/engine/game.js"></script>
+        <script type="module" src="script/main.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="style/style.css">
         <title>Title</title>
     </head>
     <body>
+        <div id="turn-phone">
+            <div class="png"></div>
+        </div>
         <main>
-            <div class="urinal-wrapper">
-                <div class="urinal" ord=0>
+            <div class="urinal-wrapper" id="urinal-wrapper">
+                <!--<div class="urinal" ord=0>
                     <div class="png"></div>
                 </div>
                 <div class="urinal" ord=1>
@@ -18,11 +25,14 @@
                 </div>
                 <div class="urinal" ord=2>
                     <div class="png"></div>
-                </div>
+                </div>-->
             </div>
         </main>
     <footer>
         <a href="https://www.flaticon.com/free-icons/urinal" title="urinal icons">Urinal icons created by Good Ware - Flaticon</a>
+        <a href="https://www.flaticon.com/free-icons/individual" title="individual icons">Individual icons created by meaicon - Flaticon</a>
+        <a href="https://www.flaticon.com/free-icons/block" title="block icons">Block icons created by DinosoftLabs - Flaticon</a>
+        <a href="https://www.flaticon.com/free-icons/tilt" title="tilt icons">Tilt icons created by Lagot Design - Flaticon</a>
     </footer>
     </body>
 </html>
