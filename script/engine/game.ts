@@ -1,5 +1,5 @@
-import { Urinal, State } from './urinal.js'
-import {choose, chooseIndexes} from '../utils/random.js'
+import {State, Urinal} from './urinal.js'
+import {chooseIndexes} from '../utils/random.js'
 
 /**
  * This class is used to manage the game.
@@ -39,15 +39,71 @@ export class Game
      * If it isn't currently marked as selected, it will be marked as selected
      * If it is currently marked as selected, it will no longer be marked as selected
      * @param ord The number of the urinal
+     * @since 1.0.0
      */
     public toggle(ord: number): void
     {
         this.urinals[ord].toggle()
     }
 
+    /**
+     * Returns an array of all urinals
+     * @return Urinal array
+     * @since 1.0.0
+     */
     public getUrinals(): Urinal[]
     {
         return this.urinals
+    }
+
+    /**
+     * Calculates the value of a urinal
+     * The higher the value the worse the position
+     * @param ord The position of the urinal
+     * @private
+     * @since 1.0.0
+     */
+    private calculateValue(ord: number): number
+    {
+        let value = 0
+
+        if(ord > 0)
+        {
+            if(this.urinals[ord - 1].getState() == State.OCCUPIED)
+                value += 2
+        }
+        else
+            value--
+
+        if(ord + 1 < this.urinals.length)
+        {
+            if (this.urinals[ord + 1].getState() == State.OCCUPIED)
+                value += 2
+        }
+        else
+            value--
+
+        return value
+    }
+
+    public validate(ord: number): boolean
+    {
+        const urinal = this.urinals[ord]
+
+        if(urinal.getState() != State.FREE)
+            throw new Error('Urinal needs to have the state FREE to be validated!')
+
+        let lowestValue = 256
+
+        Array.from(Array(this.urinals.length).keys()).forEach((index) => {
+            const value = this.calculateValue(index)
+            const urinal = this.urinals[index]
+            if(value < lowestValue && urinal.getState() == State.FREE)
+                lowestValue = value
+        })
+
+        let value = this.calculateValue(ord)
+        return value <= lowestValue
     }
 }
 
@@ -60,9 +116,8 @@ export class GameOptions
 {
     /**
      * Represents the amount of urinals in the game
-     * @author Malte Lunkeit
-     * @since 1.0.0
      * @private
+     * @since 1.0.0
      */
     private amount: number = 0
 
@@ -70,7 +125,6 @@ export class GameOptions
 
     /**
      * Setter for the amount
-     * @author Malte Lunkeit
      * @since 1.0.0
      */
     public setAmount(amount: number)
@@ -80,7 +134,6 @@ export class GameOptions
 
     /**
      * Getter for the amount
-     * @author Malte Lunkeit
      * @since 1.0.0
      */
     public getAmount(): number
@@ -102,9 +155,8 @@ export class GameOptions
 
     /**
      * Creates randomized game options
-     * @author Malte Lunkeit
-     * @since 1.0.0
      * @return The game options object
+     * @since 1.0.0
      */
     static randomize(): GameOptions
     {
