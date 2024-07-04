@@ -53,7 +53,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if(state == State.FREE)
             {
-                console.log(game.validate(+ord))
+                const valid = game.validate(+ord)
+                if(valid)
+                    target.classList.add('success')
             }
             else
             {
@@ -61,5 +63,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => target.classList.remove('failure'), 500)
             }
         })
+    })
+
+    document.getElementById('btn-darkmode')!.addEventListener('click', () => {
+        document.getElementsByTagName('body')[0].setAttribute('data-bs-theme', 'dark')
+    })
+
+    document.getElementById('btn-lightmode')!.addEventListener('click', () => {
+        document.getElementsByTagName('body')[0].setAttribute('data-bs-theme', 'light')
     })
 })

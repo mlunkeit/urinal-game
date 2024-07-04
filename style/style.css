@@ -1,3 +1,8 @@
+*
+{
+    box-sizing: border-box;
+}
+
 @keyframes blink
 {
     0% {
@@ -35,8 +40,8 @@
 .urinal
 {
     border-radius: 20px;
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     margin: 20px;
     padding: 10px;
     border: 3px solid transparent;
@@ -55,22 +60,27 @@
 
 .urinal.free .png
 {
-    background-image: url(../src/urinal_free.png);
+    background-image: url(../src/lightmode/urinal_free.png);
 }
 
 .urinal.occupied .png
 {
-    background-image: url(../src/urinal_occupied.png);
+    background-image: url(../src/lightmode/urinal_occupied.png);
 }
 
 .urinal.unavailable .png
 {
-    background-image: url(../src/urinal_unavailable.png);
+    background-image: url(../src/lightmode/urinal_unavailable.png);
 }
 
 .urinal.selected
 {
     border: 3px solid black;
+}
+
+.urinal.success
+{
+    background: var(--bs-success-bg-subtle);
 }
 
 .urinal.failure
@@ -80,6 +90,34 @@
     animation-name: blink;
     animation-duration: .5s;
     animation-timing-function: ease-in-out;
+}
+
+[data-bs-theme=dark] .urinal.free .png
+{
+    background-image: url(../src/darkmode/urinal_free.png);
+}
+
+[data-bs-theme=dark] .urinal.occupied .png
+{
+    background-image: url(../src/darkmode/urinal_occupied.png);
+}
+
+[data-bs-theme=dark] .urinal.unavailable .png
+{
+    background-image: url(../src/darkmode/urinal_unavailable.png);
+}
+
+[data-bs-theme=dark] .urinal.success
+{
+    background: var(--bs-success);
+}
+
+header
+{
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 20px;
 }
 
 #turn-phone
@@ -96,7 +134,7 @@
     transform: translate(-50%, -50%);
     width: 25vw;
     height: 25vw;
-    background-image: url(../src/phone.png);
+    background-image: url(../src/lightmode/phone.png);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -104,13 +142,13 @@
 
 @media (max-width: 1500px) {
     .urinal {
-        width: 8vw;
-        height: 8vw;
+        width: 11vw;
+        height: 11vw;
         margin: 1vw;
     }
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 600px) {
     #turn-phone
     {
         display: block;
