@@ -3,6 +3,11 @@
     box-sizing: border-box;
 }
 
+body
+{
+    overflow-x: hidden;
+}
+
 @keyframes blink
 {
     0% {
@@ -10,7 +15,7 @@
     }
 
     25% {
-        border-color: red;
+        border-color: var(--bs-danger);
     }
 
     50% {
@@ -18,7 +23,7 @@
     }
 
     75% {
-        border-color: red;
+        border-color: var(--bs-danger);
     }
 
     100% {
@@ -32,10 +37,30 @@
     display: flex;
     flex-direction: row;
     position: absolute;
+    transition: all ease-in-out .3s;
+}
+
+.urinal-wrapper.focus
+{
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
 }
+
+.urinal-wrapper.right
+{
+    left: 50%;
+    top: 50%;
+    transform: translate(100vw, -50%);
+}
+
+.urinal-wrapper.left
+{
+    left: 0;
+    top: 50%;
+    transform: translate(-100vw, -50%);
+}
+
 
 .urinal
 {
@@ -83,6 +108,11 @@
     background: var(--bs-success-bg-subtle);
 }
 
+.urinal.wrong
+{
+    background: var(--bs-danger-bg-subtle);
+}
+
 .urinal.failure
 {
     border: 3px solid transparent;
@@ -110,6 +140,11 @@
 [data-bs-theme=dark] .urinal.success
 {
     background: var(--bs-success);
+}
+
+[data-bs-theme=dark] .urinal.wrong
+{
+    background: var(--bs-danger);
 }
 
 header
