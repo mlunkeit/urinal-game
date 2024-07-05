@@ -6,9 +6,11 @@ let game: Game
 
 /**
  * Initializes a new game
+ * @param parent The parent element where the game elements should be inserted
  * @since 1.0.0
  */
-const newGame = (parent: HTMLElement) => {
+function newGame(parent: HTMLElement)
+{
     game = new Game(GameOptions.randomize())
     const urinals = game.getUrinals()
 

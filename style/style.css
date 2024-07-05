@@ -31,6 +31,11 @@ body
     }
 }
 
+label[for="btn-lightmode"]
+{
+    border-left: none;
+}
+
 .urinal-wrapper
 {
     width: fit-content;
@@ -173,6 +178,36 @@ header
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+}
+
+footer
+{
+    position: absolute;
+    font-size: 15px;
+    width: fit-content;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 0);
+    display: flex;
+    flex-direction: row;
+    color: var(--bs-secondary);
+}
+
+footer svg
+{
+    width: 23px;
+    height: 23px;
+}
+
+footer a
+{
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.imprint-wrapper
+{
+    display: none;
 }
 
 @media (max-width: 1500px) {
