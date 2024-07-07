@@ -31,9 +31,8 @@ body
     }
 }
 
-label[for="btn-lightmode"]
-{
-    border-left: none;
+label[for="btn-lightmode"] {
+    margin-left: 0 !important;
 }
 
 .urinal-wrapper

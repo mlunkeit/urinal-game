@@ -47,9 +47,9 @@ function newGame(parent: HTMLElement)
 
 function configureTheme()
 {
-    const theme = Cookie.get('theme')
+    const theme = Cookie.get('theme') ?? 'light'
 
-    document.getElementsByTagName('body')[0].setAttribute('data-bs-theme', theme ? theme : 'light')
+    document.getElementsByTagName('body')[0].setAttribute('data-bs-theme', theme)
     document.getElementById('btn-'+theme+'mode')?.toggleAttribute('checked')
 
     document.getElementById('btn-darkmode')!.addEventListener('click', () => {
