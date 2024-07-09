@@ -1,34 +1,51 @@
 /**
- * Used to choose n random values from an array
- * @param amount The amount of elements that should be chosen
- * @param array The array of elements to choose from
- * @since 1.0.0
+ * Generates pseudo random numbers using a seed
  * @author Malte Lunkeit
+ * @since 1.0.0
  */
-export const choose = <T>(amount: number, array: T[]): T[] =>
+export class PseudoRandom
 {
-    const copy = [...array];
-    const chosenElements: T[] = [];
+    private currentSeed = 0
 
-    while (chosenElements.length < amount && copy.length > 0) {
-        const size = copy.length;
-        const elementIndex = Math.floor(Math.random() * size);
-        chosenElements.push(copy[elementIndex]);
-        copy.splice(elementIndex, 1);
-    }
-
-    return chosenElements;
-}
-
-export const chooseIndexes = <T>(amount: number, array: T[]): number[] =>
-{
-    let indexes: number[] = [];
-
-    for(let i = 0; i < array.length; i++)
+    public constructor(seed: number)
     {
-        if(array[i] == null)
-            indexes.push(i)
+        this.currentSeed = seed;
     }
 
-    return choose(amount, indexes);
+    /**
+     * Linear congruent generator
+     * Generates a new seed based on the current seed
+     * @param seed The seed to generate the new seed
+     * @private
+     * @since 1.0.0
+     */
+    private lcg(seed: number): number
+    {
+        const a = 16645251
+        const c = 1013904223
+        const m = Math.pow(2, 32)
+
+        return (a * seed + c) % m
+    }
+
+    /**
+     * Generates a random value between two numbers
+     * @param min The minimum value (default 0)
+     * @param max The maximum value
+     * @return A random number between min and max (not including max)
+     * @since 1.0.0
+     */
+    public random(min: number = 0, max: number): number
+    {
+        const delta = max - min
+
+        if (delta <= 0)
+            throw Error("Delta must be greater than 0")
+
+        this.currentSeed = this.lcg(this.currentSeed)
+
+        const a = this.currentSeed % delta
+
+        return a + min
+    }
 }

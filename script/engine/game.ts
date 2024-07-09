@@ -1,5 +1,5 @@
 import {State, Urinal} from './urinal.js'
-import {chooseIndexes} from '../utils/random.js'
+import {PseudoRandom} from "../utils/random.js";
 
 /**
  * This class is used to manage the game.
@@ -8,30 +8,14 @@ import {chooseIndexes} from '../utils/random.js'
  */
 export class Game
 {
-    private options: GameOptions
     private readonly urinals: Urinal[]
 
     public constructor(options: GameOptions)
     {
-        this.options = options
         this.urinals = new Array(options.getAmount())
-        console.log(options.getAmount())
 
-        ;(Object.values(State) as State[]).forEach((value: State) => {
-            const percentage = this.options.getPercentage(value)
-            const totalAmount = Math.floor((percentage/100) * this.options.getAmount())
-            const indexes = chooseIndexes(totalAmount, this.urinals)
-
-            indexes.forEach((index) => {
-                this.urinals[index] = new Urinal(value)
-            })
-        })
-
-        for(let i = 0; i < this.options.getAmount(); i++)
-        {
-            if(this.urinals[i] == null)
-                this.urinals[i] = new Urinal(State.FREE)
-        }
+        for(let i = 0; i < options.getAmount(); i++)
+            this.urinals[i] = new Urinal(options.getState(i))
     }
 
     /**
@@ -115,42 +99,28 @@ export class Game
 export class GameOptions
 {
     /**
-     * Represents the amount of urinals in the game
+     * The amount of urinals
      * @private
      * @since 1.0.0
      */
-    private amount: number = 0
+    private readonly amount: number
 
-    private percentages: Map<State, number> = new Map()
+    private readonly states: State[]
 
-    /**
-     * Setter for the amount
-     * @since 1.0.0
-     */
-    public setAmount(amount: number)
+    public constructor(amount: number, states: State[])
     {
         this.amount = amount
+        this.states = states
     }
 
-    /**
-     * Getter for the amount
-     * @since 1.0.0
-     */
     public getAmount(): number
     {
         return this.amount
     }
 
-    public setPercentage(state: State, percentage: number)
+    public getState(n: number): State
     {
-        this.percentages.set(state, percentage)
-    }
-
-    public getPercentage(state: State): number
-    {
-        //if(!this.percentages.has(state))
-        //    throw new Error("The percentage for state " + state + " is unset")
-        return this.percentages.get(state) as number
+        return this.states[n]
     }
 
     /**
@@ -158,15 +128,37 @@ export class GameOptions
      * @return The game options object
      * @since 1.0.0
      */
-    static randomize(): GameOptions
+    static randomize(seed: number = 0): GameOptions
     {
-        const options = new GameOptions()
-        options.setAmount(Math.floor(Math.random() * 5) + 3)
+        if(seed == 0)
+            seed = new Date().getUTCMilliseconds()
 
-        options.setPercentage(State.FREE, 40)
-        options.setPercentage(State.OCCUPIED, 50)
-        options.setPercentage(State.UNAVAILABLE, 20)
+        const random = new PseudoRandom(seed)
+        const amount = random.random(4, 9)
 
-        return options
+        const states: State[] = []
+
+        for(let i = 0; i < amount; ++i)
+        {
+            const state = random.random(0, 3)
+            states.push(state)
+        }
+
+        while(states.filter(s => s == State.OCCUPIED).length < (amount / 3))
+        {
+            const index = random.random(0, amount)
+            console.log(index)
+            console.log("While 1")
+            states[index] = State.OCCUPIED
+        }
+
+        while(states.filter(s => s == State.FREE).length < 2)
+        {
+            const index = random.random(0, amount)
+            console.log("While 1")
+            states[index] = State.FREE
+        }
+
+        return new GameOptions(amount, states)
     }
 }
