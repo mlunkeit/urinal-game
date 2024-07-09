@@ -31,8 +31,6 @@ export class Cookie
         const expireDate = new Date()
         expireDate.setMonth(expireDate.getMonth() + 1)
 
-        console.log(key + '=' + value + '; expires=' + expireDate.toUTCString() + '')
-
         document.cookie = key + '=' + value + '; expires=' + expireDate.toUTCString() + ''
     }
 }

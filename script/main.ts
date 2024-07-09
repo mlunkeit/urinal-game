@@ -67,7 +67,6 @@ function urinalClickEventHandler(event: Event)
 {
     const target = event.currentTarget as HTMLElement
     const ord = target.getAttribute('ord') as string
-    console.log(ord)
 
     const urinal = game.getUrinals()[+ord]
     const state = urinal.getState()

@@ -147,15 +147,12 @@ export class GameOptions
         while(states.filter(s => s == State.OCCUPIED).length < (amount / 3))
         {
             const index = random.random(0, amount)
-            console.log(index)
-            console.log("While 1")
             states[index] = State.OCCUPIED
         }
 
         while(states.filter(s => s == State.FREE).length < 2)
         {
             const index = random.random(0, amount)
-            console.log("While 1")
             states[index] = State.FREE
         }
 
