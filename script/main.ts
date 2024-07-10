@@ -1,6 +1,25 @@
+/**
+ * main.ts
+ *
+ * Copyright (C) 2024 Malte Lunkeit
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 import {Game, GameOptions} from './engine/game.js';
 import {State} from './engine/urinal.js';
-import {Cookie} from "./utils/cookie.js";
+import {Theme} from "./utils/theme.js";
 
 let game: Game
 
@@ -42,24 +61,6 @@ function newGame(parent: HTMLElement)
         element.appendChild(imageDiv)
 
         parent.appendChild(element)
-    })
-}
-
-function configureTheme()
-{
-    const theme = Cookie.get('theme') ?? 'light'
-
-    document.getElementsByTagName('body')[0].setAttribute('data-bs-theme', theme)
-    document.getElementById('btn-'+theme+'mode')?.toggleAttribute('checked')
-
-    document.getElementById('btn-darkmode')!.addEventListener('click', () => {
-        document.getElementsByTagName('body')[0].setAttribute('data-bs-theme', 'dark')
-        Cookie.set('theme', 'dark')
-    })
-
-    document.getElementById('btn-lightmode')!.addEventListener('click', () => {
-        document.getElementsByTagName('body')[0].setAttribute('data-bs-theme', 'light')
-        Cookie.set('theme', 'light')
     })
 }
 
@@ -114,11 +115,19 @@ function urinalClickEventHandler(event: Event)
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    configureTheme()
+    Theme.init()
 
     newGame(document.querySelector('.urinal-wrapper.focus')!)
 
     Array.from(document.getElementsByClassName('urinal')).forEach(element => {
         element.addEventListener('click', urinalClickEventHandler)
+    })
+
+    document.querySelector('footer a')?.addEventListener('click', () => {
+        document.querySelector('#imprint')?.classList.toggle('active')
+    })
+
+    document.querySelector('.close-btn')?.addEventListener('click', () => {
+        document.querySelector('#imprint')?.classList.toggle('active')
     })
 })

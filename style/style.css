@@ -153,10 +153,11 @@ label[for="btn-lightmode"] {
 
 header
 {
-    position: absolute;
+    position: fixed;
     right: 0;
     top: 0;
     padding: 20px;
+    z-index: 1001;
 }
 
 #turn-phone
@@ -177,6 +178,11 @@ header
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+}
+
+[data-bs-theme=dark] #turn-phone .png
+{
+    background-image: url(../src/darkmode/phone.png);
 }
 
 footer
@@ -204,9 +210,76 @@ footer a
     cursor: pointer;
 }
 
-.imprint-wrapper
+#imprint
 {
     display: none;
+}
+
+#imprint.active
+{
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: var(--bs-body-bg);
+}
+
+#imprint .tableWrapper
+{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+#imprint .tableWrapper table
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+table tr td:first-child
+{
+    font-weight: bold;
+}
+
+table tr td
+{
+    text-align: left;
+    vertical-align: top;
+    padding: 10px;
+}
+
+table tr td a
+{
+    text-decoration: none;
+}
+
+.close-btn
+{
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.close-btn svg
+{
+    width: 100%;
+    height: 100%;
+    transition: .1s ease-in-out;
+}
+
+.close-btn:hover svg
+{
+    color: var(--bs-danger);
 }
 
 @media (max-width: 1500px) {
@@ -227,6 +300,14 @@ footer a
         position: fixed;
         left: 0;
         top: 0;
-        background: white;
+        background: var(--bs-body-bg);
+    }
+}
+
+@media only screen and (max-height: 400px)
+{
+    .tableWrapper
+    {
+        margin-top: 50px;
     }
 }
