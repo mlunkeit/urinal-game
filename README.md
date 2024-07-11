@@ -22,17 +22,17 @@ Your goal is to select a urinal with as few neighbours as possible.
     </tr>
     <tr>
         <td>FREE</td>
-        <td><img src="./src/lightmode/urinal_free.png" width="32"></td>
+        <td><img src="./src/lightmode/urinal_free.png#gh-light-mode-only" width="32"><img src="./src/darkmode/urinal_free.png#gh-dark-mode-only" width="32"></td>
         <td>This state means that the urinal is free and can be selected by the user.</td>
     </tr>
     <tr>
         <td>OCCUPIED</td>
-        <td><img src="./src/lightmode/urinal_occupied.png" width="32"></td>
+        <td><img src="./src/lightmode/urinal_occupied.png#gh-light-mode-only" width="32"><img src="./src/darkmode/urinal_occupied.png#gh-dark-mode-only" width="32"></td>
         <td>The urinal is currently occupied by a person and cannot be selected. Try to keep as much distance as possible from other people.</td>
     </tr>
     <tr>
         <td>UNAVAILABLE</td>
-        <td><img src="./src/lightmode/urinal_unavailable.png" width="32"></td>
+        <td><img src="./src/lightmode/urinal_unavailable.png#gh-light-mode-only" width="32"><img src="./src/darkmode/urinal_unavailable.png#gh-dark-mode-only" width="32"></td>
         <td>The urinal is not available due to a malfunction or other reasons. This urinal cannot be selected, but you don't need to keep distance from it.</td>
     </tr>
 </table>
