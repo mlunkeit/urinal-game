@@ -63,3 +63,12 @@ When a urinal was clicked, the site will instantly create a new game and not let
 
 ## Installation
 No installation is required. Just open your web browser and visit the [website](https://urinalgame.netlify.app)!
+
+---
+
+## Cookies
+We use cookies to enhance your browsing experience and to store your appearance preferences. This website only uses the following cookie:
+
+- **Name**: `theme`
+- **Purpose**: Stores the user's appearance preference (light or dark mode)
+- **Duration**: 1 Month

@@ -38,18 +38,6 @@ export class Game
     }
 
     /**
-     * Toggles the state of selection of a urinal.
-     * If it isn't currently marked as selected, it will be marked as selected
-     * If it is currently marked as selected, it will no longer be marked as selected
-     * @param ord The number of the urinal
-     * @since 1.0.0
-     */
-    public toggle(ord: number): void
-    {
-        this.urinals[ord].toggle()
-    }
-
-    /**
      * Returns an array of all urinals
      * @return Urinal array
      * @since 1.0.0
